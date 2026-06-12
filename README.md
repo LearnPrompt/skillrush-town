@@ -194,6 +194,12 @@ python scripts/clawhub_daily.py --date 2026-05-04
 - `data/latest.json`
 - `data/dates.json`
 
+## 抓取失败告警
+
+每日定时跑如果失败，GitHub Actions 会自动开（或追加评论到）一个带 `scrape-failure` label 的 issue，标题含日期、正文带 run 链接，同一个 open issue 不会重复开新的。零额外 secret，只用仓库自带的 `GITHUB_TOKEN`。
+
+想把告警接到自己的 IM：在 GitHub 上 Watch 本仓库（Custom → Issues）让通知走邮件/手机 App，或在你自己的服务里给本仓库配 issue 事件的 Webhook 转发到 IM——凭据放你自己那边，仓库里不存任何 IM token。
+
 ## 抓取口径
 
 主榜单固定使用页面运行态真实请求：
