@@ -1,10 +1,32 @@
 # 淘金小镇 Skill
 
+[![Install with skills.sh](https://skills.sh/b/LearnPrompt/skillrush-town)](https://skills.sh/LearnPrompt/skillrush-town)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![公告板在线](https://img.shields.io/website?url=https%3A%2F%2Flearnprompt.github.io%2Fskillrush-town%2F&label=%E5%85%AC%E5%91%8A%E6%9D%BF&up_message=online&down_message=offline)](https://learnprompt.github.io/skillrush-town/)
+
 中文名叫淘金小镇，英文名叫 **Skillrush Town**。
 
 每天早上，小镇公告板会贴出 ClawHub 下载榜 Top100。这里不只看谁排第一，更关心谁突然冒出来了：新进榜、下载涨得快、星标涨得快、排名往上窜。
 
+[![淘金小镇公告板首屏](assets/board-screenshot.png)](https://learnprompt.github.io/skillrush-town/)
+
 这些 Skill 可能还很粗糙，但值得看一眼。淘金就是这样。
+
+## 快速开始
+
+一行装进你的 Agent（Claude Code / Codex / Cursor 等 41 个 Agent 通用）：
+
+```bash
+npx skills add LearnPrompt/skillrush-town -g
+```
+
+实测输出（2026-06-13）：装到 `~/.agents/skills/skillrush-town`，并自动 symlink 到本机已有的 Agent 目录；skills.sh 安全评估为 Gen Safe / Socket 0 alerts。
+
+装完第一句话可以这样说：
+
+```text
+今天淘金小镇有什么？帮我总结 Top10 和潜力 Skill。
+```
 
 但淘金小镇不应该只是一个榜单网页。
 
@@ -153,3 +175,15 @@ skills/skillrush-town/SKILL.md
 先检查 README.md、scripts/clawhub_daily.py、data/dates.json、skills/skillrush-town/references/source-contract.md。
 请验证 Skillrush Town 是否能抓取 ClawHub Top100、生成历史快照、渲染 GitHub Pages，并指出发布前还缺什么。
 ```
+
+---
+
+<div align="center">
+
+**[LearnPrompt](https://github.com/LearnPrompt) 出品** · 同门手艺
+
+[鲁班·Skill打磨](https://github.com/LearnPrompt/luban-skill) · [庖丁·博主蒸馏](https://github.com/LearnPrompt/paoding-skill) · [蔡伦·对话造纸](https://github.com/LearnPrompt/cailun-skill) · [阿福·LLM Todo](https://github.com/LearnPrompt/afu-llm-todo) · [AI雷达·零API资讯](https://github.com/LearnPrompt/ai-news-radar) · [淘金小镇·ClawHub日榜](https://github.com/LearnPrompt/skillrush-town) · [Irasutoya·正文配图](https://github.com/LearnPrompt/carl-irasutoya-illustrations) · [Humanize PPT·简报编排](https://github.com/LearnPrompt/humanize-ppt) · [CC Harness·六件套](https://github.com/LearnPrompt/cc-harness-skills)
+
+<sub>公众号「卡尔的AI沃茨」 · [X @aiwarts](https://x.com/aiwarts) · [learnprompt.pro](https://www.learnprompt.pro)</sub>
+
+</div>

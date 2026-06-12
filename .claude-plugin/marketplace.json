@@ -1,0 +1,24 @@
+{
+  "name": "skillrush-town",
+  "owner": {
+    "name": "LearnPrompt",
+    "url": "https://github.com/LearnPrompt"
+  },
+  "metadata": {
+    "description": "Marketplace hosting the Skillrush Town daily ClawHub radar plugin."
+  },
+  "plugins": [
+    {
+      "name": "skillrush-town",
+      "description": "淘金小镇 | Skillrush Town — 每天从 ClawHub 下载榜 Top100 里淘出新进榜、增速榜和潜力 Skill。每日快照 + 历史对比 + 日报 + 公告板页面,网页是公告板,Skill 是淘金方法。",
+      "version": "0.2.0",
+      "author": {
+        "name": "LearnPrompt",
+        "url": "https://github.com/LearnPrompt"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/LearnPrompt/skillrush-town"
+    }
+  ]
+}
