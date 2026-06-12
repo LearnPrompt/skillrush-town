@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from scripts.clawhub_daily import apply_comparison, item_from_row, potential_items, render_report, update_dates
+from scripts.clawhub_daily import apply_comparison, item_from_row, potential_badge, potential_items, render_report, update_dates
 
 
 def row(slug, name, downloads, stars, author="alice", versions=1):
@@ -98,6 +98,47 @@ def test_report_does_not_call_first_run_new_entries():
     assert "今日无新增潜力skill" in report
     assert "当前排名，历史缺失" in report
     assert "新进，下载 n/a" not in report
+
+
+def test_potential_badge_uses_dynamic_date():
+    badge = potential_badge("2026-06-13")
+    assert badge == (
+        "[![淘金小镇潜力榜](https://img.shields.io/badge/"
+        "%E6%B7%98%E9%87%91%E5%B0%8F%E9%95%87%E6%BD%9C%E5%8A%9B%E6%A6%9C-2026--06--13-b4533a)]"
+        "(https://learnprompt.github.io/skillrush-town/?date=2026-06-13)"
+    )
+
+
+def test_report_potential_section_includes_badge():
+    item = item_from_row(row("riser", "Riser", 500, 9), 2)
+    item["prev_rank"] = 12
+    item["rank_change"] = 10
+    item["download_delta"] = 50
+    item["star_delta"] = 3
+    snapshot = {
+        "snapshot_date": "2026-06-13",
+        "fetched_at": "2026-06-13T00:00:00Z",
+        "source": {"pages_succeeded": 4},
+        "comparison_basis": {"note": "与前一日快照对比。"},
+        "limitations": [],
+        "items": [item],
+    }
+    report = render_report(snapshot, [])
+    assert "上榜了？把它贴进你的 README" in report
+    assert potential_badge("2026-06-13") in report
+
+
+def test_report_without_potentials_has_no_badge():
+    snapshot = {
+        "snapshot_date": "2026-05-04",
+        "fetched_at": "2026-05-04T00:00:00Z",
+        "source": {"pages_succeeded": 4},
+        "comparison_basis": {"note": "缺少历史切片，本次不做严格日环比。"},
+        "limitations": [],
+        "items": [item_from_row(row("gold-pan", "Gold Pan", 100, 8), 1)],
+    }
+    report = render_report(snapshot, [])
+    assert "img.shields.io" not in report
 
 
 def test_fetch_pages_uses_convex_v4_four_pages_and_cursors(monkeypatch):

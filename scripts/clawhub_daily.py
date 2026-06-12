@@ -254,6 +254,19 @@ def line_for_item(item: dict[str, Any]) -> str:
     return f"- #{item['rank']} {item['name']}（{item['author']} / `{item['slug']}`）：排名 {move}，下载 {fmt_delta(item.get('download_delta'))}，星标 {fmt_delta(item.get('star_delta'))}"
 
 
+PAGES_URL = "https://learnprompt.github.io/skillrush-town/"
+
+
+def potential_badge(snapshot_date: str) -> str:
+    """Markdown badge for potential-list entries, date is dynamic."""
+    shield_date = snapshot_date.replace("-", "--")
+    return (
+        "[![淘金小镇潜力榜](https://img.shields.io/badge/"
+        f"%E6%B7%98%E9%87%91%E5%B0%8F%E9%95%87%E6%BD%9C%E5%8A%9B%E6%A6%9C-{shield_date}-b4533a)]"
+        f"({PAGES_URL}?date={snapshot_date})"
+    )
+
+
 def render_report(snapshot: dict[str, Any], dropped: list[dict[str, Any]]) -> str:
     items = snapshot["items"]
     lines: list[str] = [
@@ -312,6 +325,11 @@ def render_report(snapshot: dict[str, Any], dropped: list[dict[str, Any]]) -> st
                 f"- 下载增量：{fmt_delta(item.get('download_delta'))}",
                 f"- 星标增量：{fmt_delta(item.get('star_delta'))}",
                 "- 建议：先看 README、权限范围和最近版本，再决定要不要试用。",
+                "- 上榜了？把它贴进你的 README：",
+                "",
+                "  ```markdown",
+                f"  {potential_badge(snapshot['snapshot_date'])}",
+                "  ```",
                 "",
             ]
     return "\n".join(lines) + "\n"
