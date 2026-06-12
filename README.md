@@ -62,6 +62,56 @@ ClawHub Top100 是第一个矿点，因为它有真实运行态请求、Convex p
 - 日期索引：`data/dates.json`
 - 日报归档：`data/reports/2026-05-04.md`
 
+## 给 Agent 和脚本的数据接口
+
+所有数据都是静态 JSON / Markdown，直接 GET `https://learnprompt.github.io/skillrush-town/<路径>` 即可，无需鉴权。
+
+**兼容承诺：字段只增不改不删。** 已有字段的名字和语义不会变；新需求只会加新字段。如果 ClawHub 上游被迫破坏这个承诺，会在 `limitations` 和日报里写明。
+
+### `data/latest.json` 与 `data/snapshots/<date>.json`
+
+两者结构完全相同，`latest.json` 是最新一天的副本。顶层字段：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `snapshot_date` | string | 快照日期 `YYYY-MM-DD` |
+| `fetched_at` | string | 抓取时间，ISO 8601 UTC（`Z` 结尾） |
+| `source` | object | 抓取口径：`url`、`api`、`path`、`args`（`sort`/`dir`/`nonSuspiciousOnly`/`highlightedOnly`/`numItems`）、`page_size`、`pages_requested`、`pages_succeeded`、`diagnostics.get_api_v1_skills` |
+| `comparison_basis` | object | 对比口径：`primary_ranking`、`compare_key`、`previous_snapshot`（string 或 null）、`strict_daily`（bool，是否严格日环比）、`note` |
+| `limitations` | string[] | 本次抓取与对比的已知限制 |
+| `dropped_items` | object[] | 掉出 Top100 的条目（沿用前一天快照里的 item 结构） |
+| `items` | object[] | 榜单条目，最多 100 条，按 `rank` 升序 |
+
+`items[]` 单条字段：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `rank` | int | 当日排名，从 1 开始 |
+| `name` / `author` / `slug` | string | 名称、作者 handle、slug |
+| `downloads` / `installs` / `stars` / `versions` | int 或 null | 规整后的整数指标 |
+| `downloads_raw` / `installs_raw` / `stars_raw` | 原始值 | 接口原样保留，可能是 float |
+| `latest_version` | string 或 null | 最新版本号 |
+| `summary` | string 或 null | 接口返回的简介 |
+| `compare_key` | string | 跨日对比主键：slug，缺失时退化为 `author/name` 小写 |
+| `prev_rank` | int 或 null | 上一快照排名；null 表示新进榜或无历史 |
+| `download_delta` / `star_delta` | int 或 null | 与上一快照的下载/星标增量 |
+| `rank_change` | int 或 null | `prev_rank - rank`，正数表示上升 |
+
+### `data/dates.json`
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `latest` | string | 最新快照日期 |
+| `dates` | string[] | 全部可用日期，倒序（最新在前） |
+
+### `data/reports/<date>.md`
+
+人类可读日报，固定章节顺序：抓取状态、限制说明、新进榜、掉榜、Top10 变动、下载增速 Top10、星标增速 Top10、潜力 Skill。潜力区每个条目含名称、作者、slug、命中原因、排名变化、下载/星标增量、建议；2026-06-13 之后还附入选徽章 markdown。
+
+### `feed.xml`
+
+Atom 订阅源，最近 14 天每天一条 entry，内容为 Top3 + 潜力 Skill 数，链接指向 `?date=<date>` 页面。
+
 ## 页面能力
 
 - 今日 Top10
