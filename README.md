@@ -41,6 +41,7 @@ ClawHub Top100 是第一个矿点，因为它有真实运行态请求、Convex p
 | 你想做什么 | 入口 |
 | --- | --- |
 | 直接看榜 | 打开 GitHub Pages 页面 |
+| 订阅日报 | Atom feed：[learnprompt.github.io/skillrush-town/feed.xml](https://learnprompt.github.io/skillrush-town/feed.xml)，每天一条（Top3 + 潜力数） |
 | 回看某一天 | 用页面顶部日期选择，或访问 `?date=YYYY-MM-DD` |
 | 做自己的小镇 | fork 仓库，保留 GitHub Actions |
 | 交给 Codex / Claude | 使用 `skills/skillrush-town/SKILL.md` |

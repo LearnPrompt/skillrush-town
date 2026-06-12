@@ -23,11 +23,13 @@ jobs:
           python-version: "3.11"
       - name: Fetch ClawHub snapshot
         run: python scripts/clawhub_daily.py
+      - name: Generate Atom feed
+        run: python scripts/generate_feed.py
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data
+          git add data feed.xml
           git diff --cached --quiet || git commit -m "chore: update clawhub snapshot"
           git push
       - uses: actions/configure-pages@v5
