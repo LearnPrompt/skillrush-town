@@ -2,13 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>淘金小镇日报</title>
   <id>https://learnprompt.github.io/skillrush-town/</id>
-  <updated>2026-08-18T02:39:11.074982Z</updated>
+  <updated>2026-08-19T02:41:44.417759Z</updated>
   <link href="https://learnprompt.github.io/skillrush-town/" rel="alternate" />
   <link href="https://learnprompt.github.io/skillrush-town/feed.xml" rel="self" />
   <subtitle>每天从 ClawHub 下载榜 Top100 里，淘出新进榜、增速榜和潜力 Skill。</subtitle>
   <author>
     <name>LearnPrompt</name>
   </author>
+  <entry>
+    <title>淘金小镇日报 2026-08-19</title>
+    <id>https://learnprompt.github.io/skillrush-town/?date=2026-08-19</id>
+    <link href="https://learnprompt.github.io/skillrush-town/?date=2026-08-19" rel="alternate" />
+    <updated>2026-08-19T02:41:44.417759Z</updated>
+    <content type="text">今日 Top3：
+#1 self-improving agent（pskoett / self-improving-agent）
+#2 Skill Vetter（spclaudehome / skill-vetter）
+#3 Self-Improving + Proactive Agent（ivangdavila / self-improving）
+潜力 Skill：10 个。
+与前一日快照 2026-08-18.json 对比。</content>
+  </entry>
   <entry>
     <title>淘金小镇日报 2026-08-18</title>
     <id>https://learnprompt.github.io/skillrush-town/?date=2026-08-18</id>
@@ -164,17 +176,5 @@
 #3 Self-Improving + Proactive Agent（ivangdavila / self-improving）
 潜力 Skill：10 个。
 与前一日快照 2026-08-05.json 对比。</content>
-  </entry>
-  <entry>
-    <title>淘金小镇日报 2026-08-05</title>
-    <id>https://learnprompt.github.io/skillrush-town/?date=2026-08-05</id>
-    <link href="https://learnprompt.github.io/skillrush-town/?date=2026-08-05" rel="alternate" />
-    <updated>2026-08-05T04:46:08.584317Z</updated>
-    <content type="text">今日 Top3：
-#1 self-improving agent（pskoett / self-improving-agent）
-#2 Skill Vetter（spclaudehome / skill-vetter）
-#3 Self-Improving + Proactive Agent（ivangdavila / self-improving）
-潜力 Skill：10 个。
-与前一日快照 2026-08-04.json 对比。</content>
   </entry>
 </feed>
