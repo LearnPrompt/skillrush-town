@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import urllib.request
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -254,7 +255,24 @@ def line_for_item(item: dict[str, Any]) -> str:
     return f"- #{item['rank']} {item['name']}（{item['author']} / `{item['slug']}`）：排名 {move}，下载 {fmt_delta(item.get('download_delta'))}，星标 {fmt_delta(item.get('star_delta'))}"
 
 
-PAGES_URL = "https://learnprompt.github.io/skillrush-town/"
+DEFAULT_PAGES_URL = "https://learnprompt.github.io/skillrush-town/"
+
+
+def resolve_pages_url(repo_root: Path | None = None) -> str:
+    """Site base URL: SKILLRUSH_PAGES_URL env > repo-root CNAME > GitHub Pages default."""
+    override = os.environ.get("SKILLRUSH_PAGES_URL", "").strip()
+    if override:
+        return override if override.endswith("/") else override + "/"
+    root = repo_root if repo_root is not None else Path(__file__).resolve().parent.parent
+    cname = root / "CNAME"
+    if cname.is_file():
+        lines = [line.strip() for line in cname.read_text(encoding="utf-8").splitlines() if line.strip()]
+        if lines:
+            return f"https://{lines[0]}/"
+    return DEFAULT_PAGES_URL
+
+
+PAGES_URL = resolve_pages_url()
 
 
 def potential_badge(snapshot_date: str) -> str:

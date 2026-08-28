@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from scripts import generate_feed
 from scripts.generate_feed import build_feed, write_feed
 
 ATOM = "{http://www.w3.org/2005/Atom}"
@@ -28,7 +29,8 @@ def make_data_dir(tmp_path: Path) -> Path:
     return data_dir
 
 
-def test_build_feed_one_entry_per_day(tmp_path: Path):
+def test_build_feed_one_entry_per_day(tmp_path: Path, monkeypatch):
+    monkeypatch.setattr(generate_feed, "PAGES_URL", "https://learnprompt.github.io/skillrush-town/")
     feed = build_feed(make_data_dir(tmp_path))
     entries = feed.findall(f"{ATOM}entry")
     assert len(entries) == 2

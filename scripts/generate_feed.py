@@ -9,12 +9,12 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 try:
-    from scripts.clawhub_daily import potential_items
+    from scripts.clawhub_daily import potential_items, resolve_pages_url
 except ImportError:  # run as `python scripts/generate_feed.py` from repo root
-    from clawhub_daily import potential_items
+    from clawhub_daily import potential_items, resolve_pages_url
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
-PAGES_URL = "https://learnprompt.github.io/skillrush-town/"
+PAGES_URL = resolve_pages_url()
 FEED_TITLE = "淘金小镇日报"
 DEFAULT_MAX_ENTRIES = 14
 
