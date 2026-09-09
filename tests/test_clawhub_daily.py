@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from scripts import clawhub_daily
 from scripts.clawhub_daily import apply_comparison, item_from_row, potential_badge, potential_items, render_report, update_dates
 
 
@@ -100,7 +101,31 @@ def test_report_does_not_call_first_run_new_entries():
     assert "新进，下载 n/a" not in report
 
 
-def test_potential_badge_uses_dynamic_date():
+def test_resolve_pages_url_defaults_to_github_pages(tmp_path, monkeypatch):
+    monkeypatch.delenv("SKILLRUSH_PAGES_URL", raising=False)
+    assert clawhub_daily.resolve_pages_url(repo_root=tmp_path) == "https://learnprompt.github.io/skillrush-town/"
+
+
+def test_resolve_pages_url_reads_cname(tmp_path, monkeypatch):
+    monkeypatch.delenv("SKILLRUSH_PAGES_URL", raising=False)
+    (tmp_path / "CNAME").write_text("skillrush.goodcase.ai\n", encoding="utf-8")
+    assert clawhub_daily.resolve_pages_url(repo_root=tmp_path) == "https://skillrush.goodcase.ai/"
+
+
+def test_resolve_pages_url_ignores_empty_cname(tmp_path, monkeypatch):
+    monkeypatch.delenv("SKILLRUSH_PAGES_URL", raising=False)
+    (tmp_path / "CNAME").write_text("\n", encoding="utf-8")
+    assert clawhub_daily.resolve_pages_url(repo_root=tmp_path) == clawhub_daily.DEFAULT_PAGES_URL
+
+
+def test_resolve_pages_url_env_override_wins(tmp_path, monkeypatch):
+    (tmp_path / "CNAME").write_text("skillrush.goodcase.ai\n", encoding="utf-8")
+    monkeypatch.setenv("SKILLRUSH_PAGES_URL", "https://example.com/town")
+    assert clawhub_daily.resolve_pages_url(repo_root=tmp_path) == "https://example.com/town/"
+
+
+def test_potential_badge_uses_dynamic_date(monkeypatch):
+    monkeypatch.setattr(clawhub_daily, "PAGES_URL", "https://learnprompt.github.io/skillrush-town/")
     badge = potential_badge("2026-06-13")
     assert badge == (
         "[![淘金小镇潜力榜](https://img.shields.io/badge/"
