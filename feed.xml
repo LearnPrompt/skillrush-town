@@ -2,13 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>淘金小镇日报</title>
   <id>https://skillrush.goodcase.ai/</id>
-  <updated>2026-09-22T06:42:31.635091Z</updated>
+  <updated>2026-09-23T06:33:18.980962Z</updated>
   <link href="https://skillrush.goodcase.ai/" rel="alternate" />
   <link href="https://skillrush.goodcase.ai/feed.xml" rel="self" />
   <subtitle>每天从 ClawHub 下载榜 Top100 里，淘出新进榜、增速榜和潜力 Skill。</subtitle>
   <author>
     <name>LearnPrompt</name>
   </author>
+  <entry>
+    <title>淘金小镇日报 2026-09-23</title>
+    <id>https://skillrush.goodcase.ai/?date=2026-09-23</id>
+    <link href="https://skillrush.goodcase.ai/?date=2026-09-23" rel="alternate" />
+    <updated>2026-09-23T06:33:18.980962Z</updated>
+    <content type="text">今日 Top3：
+#1 self-improving agent（pskoett / self-improving-agent）
+#2 Skill Vetter（spclaudehome / skill-vetter）
+#3 Self-Improving + Proactive Agent（ivangdavila / self-improving）
+潜力 Skill：10 个。
+与前一日快照 2026-09-22.json 对比。</content>
+  </entry>
   <entry>
     <title>淘金小镇日报 2026-09-22</title>
     <id>https://skillrush.goodcase.ai/?date=2026-09-22</id>
@@ -164,17 +176,5 @@
 #3 Self-Improving + Proactive Agent（ivangdavila / self-improving）
 潜力 Skill：10 个。
 与前一日快照 2026-09-09.json 对比。</content>
-  </entry>
-  <entry>
-    <title>淘金小镇日报 2026-09-09</title>
-    <id>https://skillrush.goodcase.ai/?date=2026-09-09</id>
-    <link href="https://skillrush.goodcase.ai/?date=2026-09-09" rel="alternate" />
-    <updated>2026-09-09T06:33:53.428619Z</updated>
-    <content type="text">今日 Top3：
-#1 self-improving agent（pskoett / self-improving-agent）
-#2 Skill Vetter（spclaudehome / skill-vetter）
-#3 Self-Improving + Proactive Agent（ivangdavila / self-improving）
-潜力 Skill：10 个。
-与前一日快照 2026-09-08.json 对比。</content>
   </entry>
 </feed>
